@@ -17,4 +17,8 @@ def get_last_update(updates: list[dict]) -> dict:
 
 updates = get_updates()
 last_update = get_last_update(updates)
-print(last_update)
+
+text = last_update['message']['text']
+user = last_update['message']['from']
+
+print(text, "from", user['first_name'])
