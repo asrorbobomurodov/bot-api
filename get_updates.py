@@ -17,17 +17,17 @@ def get_last_update(updates: list[dict]) -> dict:
     return updates[-1]
 
 
-last_update_id = -1
-while True:
-    updates = get_updates()
-    last_update = get_last_update(updates)
+# last_update_id = -1
+# while True:
+#     updates = get_updates()
+#     last_update = get_last_update(updates)
 
 
-    if last_update['update_id'] != last_update_id:
-        text = last_update['message']['text']
-        user = last_update['message']['from']
+#     if last_update['update_id'] != last_update_id:
+#         text = last_update['message']['text']
+#         user = last_update['message']['from']
 
-        print(text, "from", user['first_name'])
-        last_update_id = last_update['update_id']
+#         # print(text, "from", user['first_name'])
+#         last_update_id = last_update['update_id']
 
-    sleep(0.5)
+#     sleep(0.5)

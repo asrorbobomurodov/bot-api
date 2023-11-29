@@ -3,11 +3,15 @@ import requests
 
 url = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
 
-def send_message(chat_id, text):
-    payload = {
-        "chat_id": chat_id,
-        "text": text,
-    }
-    requests.get(url, params=payload)
+def send_message(chat_id: str, text: str):
 
-send_message('1258594598', 'hi')
+    payload = {
+        'chat_id': chat_id,
+        'text': text
+    }
+
+    response = requests.get(url, params=payload)
+
+    return response.json()
+
+send_message('6082673969', 'Wow')
