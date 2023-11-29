@@ -1,5 +1,6 @@
 from settings import TOKEN
 import requests
+from time import sleep
 
 url = f'https://api.telegram.org/bot{TOKEN}/getUpdates'
 
@@ -15,10 +16,18 @@ def get_updates():
 def get_last_update(updates: list[dict]) -> dict:
     return updates[-1]
 
-updates = get_updates()
-last_update = get_last_update(updates)
 
-text = last_update['message']['text']
-user = last_update['message']['from']
+last_update_id = -1
+while True:
+    updates = get_updates()
+    last_update = get_last_update(updates)
 
-print(text, "from", user['first_name'])
+
+    if last_update['update_id'] != last_update_id:
+        text = last_update['message']['text']
+        user = last_update['message']['from']
+
+        print(text, "from", user['first_name'])
+        last_update_id = last_update['update_id']
+
+    sleep(0.5)
